@@ -13,6 +13,9 @@ class Organization(models.Model):
     url = models.URLField(verbose_name="Organization URL",
                           null=True, blank=True, default=None)
 
+    def __str__(self):
+        return self.title
+
 
 class User(AbstractUser):
     username = None
@@ -56,15 +59,16 @@ class User(AbstractUser):
 class Department(models.Model):
     department_name = models.CharField(
         max_length=60, null=False, blank=False, verbose_name="Department Name")
-    organization = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name="Organization Name", null=False, blank=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name="Added By", null=False, blank=True)
 
     def __str__(self):
         return self.department_name
 
 
 class Profile(models.Model):
-    organization = models.OneToOneField(
+    # change this to user
+    user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, null=False)
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE, null=True, blank=False)
@@ -77,4 +81,4 @@ class Profile(models.Model):
     is_employee = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.organization)
+        return str(self.user)
