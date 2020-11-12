@@ -127,3 +127,6 @@ def signup(request):
             context['profile_form'] = profile_form
 
         return render(request, 'desksolutions/register.html', context)
+
+        #abc
+        if methon == 'GET'
