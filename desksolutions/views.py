@@ -69,11 +69,13 @@ def signup(request):
     session_name = request.session.get('organization')
     print(session_name)
     if session_name is not None:
+        context = {}
         get_organization = Organization.objects.get(id=session_name)
         print(get_organization)
+        context['organization_title'] = get_organization.title
         # get_org = get_object_or_404(Organization, title=url)
         print("in signup function")
-        context = {}
+
         if request.method == "POST":
             user_form = RegisterForm(request.POST or None)
             profile_form = ProfileForm(request.POST or None)
@@ -112,9 +114,10 @@ def signup(request):
                     user.groups.add(group)
                 else:
                     user.groups.add(group)
-                profile.organization = user
+                profile.user = user
                 profile.save()
                 del request.session['organization']
+                return redirect('/admin/login')
                 # print(request.session['organization'])
             else:
                 print("invalid form")
