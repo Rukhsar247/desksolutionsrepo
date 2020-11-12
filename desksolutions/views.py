@@ -129,4 +129,5 @@ def signup(request):
         return render(request, 'desksolutions/register.html', context)
 
         #abc
-        if methon == 'GET'
+        #if methon == 'GET'
+        #gggggg
