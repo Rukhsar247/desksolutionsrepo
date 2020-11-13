@@ -9,7 +9,7 @@ import json
 from ProjectDeskSolutions3 import settings
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
-
+from .models import Post
 
 def home(request):
     return render(request, "desksolutions/base.html")
@@ -131,7 +131,3 @@ def signup(request):
             context['profile_form'] = profile_form
 
         return render(request, 'desksolutions/register.html', context)
-
-        #abc
-        #if methon == 'GET'
-        #gggggg
