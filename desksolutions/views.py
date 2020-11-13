@@ -114,6 +114,7 @@ def signup(request):
                     user.groups.add(group)
                 else:
                     user.groups.add(group)
+                profile.organization = user
                 profile.user = user
                 profile.save()
                 del request.session['organization']

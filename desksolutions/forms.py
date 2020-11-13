@@ -1,7 +1,6 @@
 from django import forms
 from account.models import Organization, User, Profile
-
-
+from django.db.models.signals import pre_save
 class OrganizationForm(forms.ModelForm):
     class Meta:
         model = Organization

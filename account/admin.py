@@ -1,9 +1,11 @@
 from django.contrib import admin
+from .model import User, Organization
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, Permission
 from .models import User, Organization, Profile, Department
 from .forms import UserModelForm, CustomDepartmentForm, ProfileForm, ProfileFormSet
 
+admin.site.register(User)
 
 class ProfileInline(admin.StackedInline):
     model = Profile
